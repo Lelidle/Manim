@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/MovingBraces/3163782288_3310918657_2546522943.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/MovingBraces/1495979052_2478725539_3731895421.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/MovingBraces/1495979052_4180579860_3692736482.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/MovingBraces/1495979052_388390621_3731895421.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/MovingBraces/1495979052_4180579860_4260938558.mp4'

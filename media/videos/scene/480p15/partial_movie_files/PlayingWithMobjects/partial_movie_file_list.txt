@@ -1,0 +1,11 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3680823526_4180579860_2805447133.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_3063130191_3511381215.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_1264700162_1701862360.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_1146216840_3595462029.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_1837148253_1339259055.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_2227925043_4282709122.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_1611854286_1595440827.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_4180579860_1341079628.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_971086712_468208445.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/scene/480p15/partial_movie_files/PlayingWithMobjects/3369886894_4180579860_2938306656.mp4'

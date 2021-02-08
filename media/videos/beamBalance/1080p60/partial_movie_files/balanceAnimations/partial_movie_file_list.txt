@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/beamBalance/1080p60/partial_movie_files/balanceAnimations/450974505_2287487320_3307650147.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/beamBalance/1080p60/partial_movie_files/balanceAnimations/2788726626_1491962050_251556720.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/beamBalance/1080p60/partial_movie_files/balanceAnimations/2788726626_2713578976_3307650147.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/beamBalance/1080p60/partial_movie_files/balanceAnimations/2788726626_1837148253_2898107690.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/beamBalance/1080p60/partial_movie_files/balanceAnimations/2788726626_376228647_3307650147.mp4'
+file 'file:D:/larsw/Documents/Code/Python/Manim/media/videos/beamBalance/1080p60/partial_movie_files/balanceAnimations/2788726626_1491962050_251556720.mp4'
