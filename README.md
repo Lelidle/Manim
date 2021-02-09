@@ -1,0 +1,1 @@
+A little playground to do stuff with Manim
