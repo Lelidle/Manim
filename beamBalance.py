@@ -3,20 +3,19 @@ import copy
 
 class balanceAnimations(Scene):
     def construct(self):
-        self.intro()
-
+        #self.intro()
         self.setupBeam()
-        to_Fade_in = VGroup(self.balance, self.left_basket, self.right_basket)
+        to_Fade_in = VGroup(self.balance, self.left_basket, self.right_basket, self.weight_list[0], self.weight_list[1])
         self.play(FadeIn(to_Fade_in))
-        self.wait(3)
+        self.wait()
         self.removeWeights(1,0,False, False)
-        self.wait(2)
-        self.tilt("DL")
-        self.wait(2)
-        self.basket_list[0].addWeight(beamWeight(False))
-        self.wait(2)
-        self.tilt("UL")
-        self.wait(2)
+        self.wait()
+        self.tilt("DR")
+        self.wait()
+        self.weight_list[0].addWeight(beamWeight(False))
+        self.wait()
+        self.tilt("UR")
+        self.wait()
         self.removeWeights(1,0,False, False)
         self.removeWeights(1,1, False, False)
         self.wait(2)
@@ -39,44 +38,47 @@ class balanceAnimations(Scene):
         self.balance = beamBalance()
         weight_list_left = [beamWeight(False),beamWeight(True),beamWeight(True),beamWeight(True)]
         weight_list_right = [beamWeight(True),beamWeight(False),beamWeight(False),beamWeight(False),beamWeight(False),beamWeight(False)] 
-        self.left_basket = basket(weight_list_left, self).next_to(self.balance.upper_bar,direction=DOWN, buff = 0).shift(4*LEFT)
-        self.right_basket = basket(weight_list_right, self).next_to(self.balance.upper_bar,direction=DOWN, buff = 0).shift(4*RIGHT)  
+        self.weights_left = weightGroup(weight_list_left)
+        self.weights_right= weightGroup(weight_list_right)
+        self.left_basket = basket().next_to(self.balance.upper_bar,direction=DOWN, buff = 0).shift(4*LEFT)
+        self.right_basket = basket().next_to(self.balance.upper_bar,direction=DOWN, buff = 0).shift(4*RIGHT)  
         self.basket_list = [self.left_basket, self.right_basket]
+        self.weight_list = [self.weights_left, self.weights_right]
+        self.weights_left.positionWeights(self.left_basket.dot)
+        self.weights_right.positionWeights(self.right_basket.dot)
+
 
     def tilt(self, direction):
         if direction == "DL" or direction == "UR":
-            self.play(ApplyMethod(self.balance.rotateUpperBar, PI/16), ApplyMethod(self.left_basket.shift, DOWN*0.8), ApplyMethod(self.right_basket.shift, UP*0.8))
+            self.play(ApplyMethod(self.balance.rotateUpperBar, PI/16), ApplyMethod(self.left_basket.shift, DOWN*0.8), ApplyMethod(self.right_basket.shift, UP*0.8),
+            ApplyMethod(self.weights_left.shift, DOWN*0.8), ApplyMethod(self.weights_right.shift, UP*0.8))
         elif direction == "UL" or direction == "DR":
-            self.play(ApplyMethod(self.balance.rotateUpperBar, - PI/16), ApplyMethod(self.left_basket.shift, UP*0.8), ApplyMethod(self.right_basket.shift, DOWN*0.8))
+            self.play(ApplyMethod(self.balance.rotateUpperBar, - PI/16), ApplyMethod(self.left_basket.shift, UP*0.8), ApplyMethod(self.right_basket.shift, DOWN*0.8),
+            ApplyMethod(self.weights_left.shift, UP*0.8), ApplyMethod(self.weights_right.shift, DOWN*0.8))
 
     def removeWeights(self,number, side, isX, pause):
         indices_to_pop = []
         i = 0
-        for j in range(0,len(self.basket_list[side].weight_list)):
-            if self.basket_list[side].weight_list[j].getIsX() == isX:
+        for j in range(0,len(self.weight_list[side].weight_list)):
+            if self.weight_list[side].weight_list[j].getIsX() == isX:
                 indices_to_pop.append(j)
                 i += 1
                 if i == number:
                     break
+        print(indices_to_pop)
         if pause:
             for i in range(0, len(indices_to_pop)):
-                self.play(FadeOut(self.basket_list[side].weight_list[indices_to_pop[i]]))
-                self.basket_list[side].removeWeight(isX)    
-                self.play(ApplyMethod(self.basket_list[side].repositionWeights))
-                #self.basket_list[side].repositionWeights()
-                #self.remove(self.basket_list[side].weight_list[indices_to_pop[i]])
+                self.play(FadeOut(self.weight_list[side].weight_list[indices_to_pop[i]]))
+                self.weight_list[side].removeWeight(isX)    
+                self.play(ApplyMethod(self.weight_list[side].positionWeights,self.basket_list[side].dot , run_time =0.5))
         else:
             v = VGroup()
             for i in range(0, len(indices_to_pop)):
-                v.add(self.basket_list[side].weight_list[indices_to_pop[i]])
-                self.basket_list[side].removeWeight(isX)    
-                #self.basket_list[side].repositionWeights()
-                self.play(ApplyMethod(self.basket_list[side].repositionWeights))
-                #self.remove(self.basket_list[side].weight_list[indices_to_pop[i]])
+                v.add(self.weight_list[side].weight_list[indices_to_pop[i]])  
             self.play(FadeOut(v))
-        #for i in range(0, number):
-        #    self.basket_list[side].removeWeight(isX)    
-        #self.basket_list[side].repositionWeights()
+            for i in range(0, len(indices_to_pop)):
+                self.weight_list[side].removeWeight(isX) 
+            self.play(ApplyMethod(self.weight_list[side].positionWeights,self.basket_list[side].dot, run_time =0.5))
 
 
 class beamBalance(VGroup):
@@ -91,28 +93,28 @@ class beamBalance(VGroup):
         self.upper_bar.rotate(angle)
 
 class basket(VGroup):
-    def __init__(self, weight_list, scene):
+    def __init__(self):
         super().__init__()
-        self.scene = scene
         self.dot = Dot(fill_opacity=0)
         self.left_line = Line(start =(0,0,0), end = (0,3,0)).rotate(-PI/8).shift(0.57*LEFT)
         self.right_line = Line(start =(0,0,0), end = (0,3,0)).rotate(PI/8).shift(0.57*RIGHT)
         self.bowl = Sector(outer_radius=1.15, inner_radius = 1.12, angle = PI).rotate(PI).shift(1*DOWN)
-        self.weight_list = weight_list
+        self.add(self.left_line, self.right_line, self.bowl, self.dot)
+
+
+class weightGroup(VGroup):
+    def __init__(self, weight_list):
+        super().__init__()
         self.positions = [0.6*DOWN, 0.64*LEFT+0.24*DOWN,0.64*RIGHT+0.24*DOWN, 0.12*UP, 0.64*LEFT+0.47*UP, 0.64*RIGHT+0.47*UP, 0.85*UP]
-        self.positionWeights()
-        self.add(self.left_line, self.right_line, self.bowl,self.dot)
+        self.weight_list = weight_list
+        self.dot = None
 
     def addWeight(self,weight):
         self.weight_list.append(weight)
-        self.repositionWeights()
+        self.positionWeights(self.dot)
 
-    def positionWeights(self):
-        for i in range(0, len(self.weight_list)):
-            self.weight_list[i].align_to(self.dot)
-            self.add(self.weight_list[i].shift(self.positions[i]))
-
-    def repositionWeights(self):
+    def positionWeights(self, dot):
+        self.dot = dot
         for i in range(0, len(self.weight_list)):
             self.weight_list[i].move_to(self.dot)
             self.add(self.weight_list[i].shift(self.positions[i]))
@@ -123,7 +125,6 @@ class basket(VGroup):
                 self.remove(self.weight_list[j])
                 self.weight_list.pop(j)
                 break
-
 
 class beamWeight(VGroup):
     def __init__(self, isX):
